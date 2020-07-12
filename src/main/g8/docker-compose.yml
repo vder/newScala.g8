@@ -27,12 +27,12 @@ services:
     container_name: exchange_pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_DEFAULT_EMAIL: "\${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}"
+      PGADMIN_DEFAULT_PASSWORD: "\${PGADMIN_DEFAULT_PASSWORD:-admin}"
    # volumes:
    #   - pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5060}:80"
+      - "\${PGADMIN_PORT:-5060}:80"
     networks:
       - postgres-db
     restart: unless-stopped
