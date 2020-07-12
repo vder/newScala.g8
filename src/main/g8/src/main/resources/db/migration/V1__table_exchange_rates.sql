@@ -1,0 +1,1 @@
+create table if not exists table(id NUMERIC, desc TEXT);
