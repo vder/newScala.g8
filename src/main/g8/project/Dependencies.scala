@@ -26,7 +26,7 @@ object Dependencies {
     "org.http4s" %% "http4s-circe" % Http4sVersion,
     "org.http4s" %% "http4s-dsl" % Http4sVersion
   )
-  lazy val spec2 = "org.specs2" %% "specs2-core" % Specs2Version % "test"
+  lazy val spec2 = "org.specs2" %% "specs2-core" % Specs2Version
   lazy val doobie = "org.tpolecat" %% "doobie-core" % doobieVersion
   lazy val catsEffect = "org.typelevel" %% "cats-effect" % catsEffVersion
 }
