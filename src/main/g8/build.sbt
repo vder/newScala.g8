@@ -6,8 +6,12 @@ ThisBuild / organization := "com.example"
 ThisBuild / organizationName := "example"
 
 lazy val root = (project in file("."))
+  .enablePlugins(FlywayPlugin)
   .settings(
-    name := "$name$",
+    name := "streams_playground",
+    flywayUrl := "jdbc:postgresql://localhost:54340/exchange",
+    flywayUser := "vder",
+    flywayPassword := "gordon",
     libraryDependencies ++= Seq(
       spec2 % Test,
       logback,
@@ -17,10 +21,15 @@ lazy val root = (project in file("."))
       newtype,
       flyway,
       doobie,
-      catsEffect
+      catsEffect,
+      doobieHikari,
+      doobiePostgres,
+      slf4j
     ),
     libraryDependencies ++= http4s,
-    addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3"),
+    addCompilerPlugin(
+      "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
+    ),
     addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
     scalacOptions ++= Seq(
       "-deprecation",
@@ -32,10 +41,3 @@ lazy val root = (project in file("."))
       "-Xfatal-warnings"
     )
   )
-
-enablePlugins(FlywayPlugin)
-flywayUrl := "jdbc:postgresql://localhost:54340/exchange"
-flywayUser := "vder"
-flywayPassword := "gordon"
-
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.

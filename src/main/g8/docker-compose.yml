@@ -3,19 +3,19 @@ version: '3.5'
 
 services:
   #  Create a service named db.
-  exchange-postgres-db:
+  db:
     #   Use the Docker Image postgres. This will pull the newest release.
     image: "postgres"
     #   Give the container the name my_postgres. You can changes to something else.
-    container_name: "exchange_postgres_db"
+    container_name: "project_db"
     #   Setup the username, password, and database name. You can changes these values.
     environment:
       - POSTGRES_USER=vder
       - POSTGRES_PASSWORD=gordon
-      - POSTGRES_DB=exchange
+      - POSTGRES_DB=db
     #   Maps port 54320 (localhost) to port 5432 on the container. You can change the ports to fix your needs.
     networks:
-      - postgres-db
+      - db-network
     restart: always
     ports:
       - "54340:5432"
@@ -24,20 +24,20 @@ services:
       # - ./postgres-data:/var/lib/postgresql/data/pgdata
 
   pgadmin2:
-    container_name: exchange_pgadmin
+    container_name: streams_pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "\${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}"
-      PGADMIN_DEFAULT_PASSWORD: "\${PGADMIN_DEFAULT_PASSWORD:-admin}"
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD:-admin}"
    # volumes:
    #   - pgadmin:/root/.pgadmin
     ports:
-      - "\${PGADMIN_PORT:-5060}:80"
+      - "${PGADMIN_PORT:-5060}:80"
     networks:
-      - postgres-db
+      - db-network
     restart: unless-stopped
 
 
 networks:
-  postgres-db:
+  db-network:
     driver: bridge
