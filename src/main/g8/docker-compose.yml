@@ -32,7 +32,7 @@ services:
    # volumes:
    #   - pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5060}:80"
+      - "\${PGADMIN_PORT:-5060}:80"
     networks:
       - db-network
     restart: unless-stopped
