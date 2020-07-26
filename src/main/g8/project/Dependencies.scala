@@ -16,6 +16,7 @@ object Dependencies {
   lazy val logback = "ch.qos.logback" % "logback-classic" % LogbackVersion
   lazy val pureConfig =
     "com.github.pureconfig" %% "pureconfig" % pureConfigVersion
+  lazy val slf4j = "io.chrisdavenport" %% "log4cats-slf4j" % "1.1.1"
   lazy val refined = "eu.timepit" %% "refined" % refinedVersion
   lazy val circe = "io.circe" %% "circe-generic" % CirceVersion
   lazy val newtype = "io.estatico" %% "newtype" % newtypeVersion
@@ -28,5 +29,7 @@ object Dependencies {
   )
   lazy val spec2 = "org.specs2" %% "specs2-core" % Specs2Version
   lazy val doobie = "org.tpolecat" %% "doobie-core" % doobieVersion
+  lazy val doobieHikari = "org.tpolecat" %% "doobie-hikari" % doobieVersion
+  lazy val doobiePostgres =  "org.tpolecat" %% "doobie-postgres" % doobieVersion
   lazy val catsEffect = "org.typelevel" %% "cats-effect" % catsEffVersion
 }
